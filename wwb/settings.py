@@ -54,7 +54,8 @@ CONTRIB_APPS = [
 ]
 
 PROJECT_APPS = [
-
+    'apps.models',
+    'apps.views',
 ]
 
 INSTALLED_APPS = CONTRIB_APPS + PROJECT_APPS
