@@ -1,3 +1,7 @@
+# Import django packages
 from django.contrib import admin
 
-# Register your models here.
+# Import project packages
+from . import models
+
+admin.site.register(models.Project)
