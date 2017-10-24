@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{% blocktrans %}
+Hay un nuevo mensaje de contacto en la plataforma CIVICS.CC.
+
+Mensaje de {{ name }} [{{email}}]:
+"{{ body }}"
+
+{% endblocktrans %}

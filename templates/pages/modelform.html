@@ -1,0 +1,11 @@
+{# Modelform generic page #} {% extends 'layouts/single-fixed-column.html' %} {% load i18n %}
+{% block body_classes %}modelform--{{ form__html_class }}{% endblock %}
+
+{% block main %}
+    {% include 'pages/title.html' with title=title %}
+    {% include 'forms/form.html' with form_class=form__html_class action_class=form__action_class %}
+{% endblock %}
+
+{% block page_scripts %}
+    {{ form.media }}
+{% endblock %}

@@ -1,0 +1,14 @@
+{# Toolbar region #} {% extends 'regions/region-base.html' %} {% load utils static i18n %}
+
+{% block region_content %}
+    <div class="region-{{ region_name }}__left">
+        <figure class="civics-logo">
+            <a href="{% url 'front' %}" title="{% trans 'Ir a la pantalla de inicio' %}">
+                <img src="{% static 'civics/img/logo-civics.svg' %}" />
+            </a>
+        </figure>
+    </div>
+    <div class="region-{{ region_name }}__right">
+        {% include 'forms/language-switcher.html' %}
+    </div>
+{% endblock %}

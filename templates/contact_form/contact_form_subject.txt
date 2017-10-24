@@ -1,0 +1,4 @@
+{% load i18n %}
+{% blocktrans %}
+Mensaje nuevo de contacto en civics.cc
+{% endblocktrans %}

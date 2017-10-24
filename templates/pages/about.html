@@ -1,0 +1,109 @@
+{# About page #}
+{% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{% block body_classes %}about{% endblock %}
+
+{% block main %}
+    <div class="civics-about">
+        <object class="civics-logo--about" data="{% static 'civics/img/logo-civics.svg' %}"></object>
+        <p class="civics-about__text">{% blocktrans trimmed %}
+          Son miles las vecinas y vecinos que trabajan de forma colectiva para
+          construir una ciudad más habitable, sostenible, inclusiva y participativa.
+          Antes que ellos, otros hicieron lo mismo reivindicando viviendas dignas,
+          calles sin barro, más espacios comunes o servicios básicos. 
+          CIVICS es un primer mapa de la innovación ciudadana que cotidianamente
+          desarrollan los ciudadanos en todo Iberoamérica. Es una herramienta
+          digital de automapeo en formato de agenda-geolocalizada donde encontrar
+          y añadir toda la innovación ciudadana que existe en nuestras ciudades,
+          localizar sus eventos asociados y participar en ellos. CIVICS es, la
+          herramienta de mapeo que más información tiene condensada sobre la
+          actualidad de la innovación ciudadana.
+          Los espacios que aparecen en este mapa muestran la existencia de una ciudad
+          efervescente pero muchas veces invisibilizada. Espacios y proyectos que
+          pretenden ponen en valor la potencia de una ciudadanía crítica y activa
+          que ha creado nuevos entornos de posibilidad, mediante la autogestión
+          y la participación.
+          Apostamos por la oportunidad que genera un mapa construido por los
+          ciudadanos como dispositivo de apertura y encuentro. Una cartografía que
+          construye un relato común a los países Iberoamericanos. Un mapa que,
+          mapeando, genera impacto social.<br/>
+          <strong>Ayúdanos a conectar gente con ideas e ideas que buscan gente, que
+          juntas hacen cosas como [huertos urbanos/rutas en bici/solidaridad vecinal, etc].
+          Si formas parte de un colectivo, iniciativa, asociación, comunidad, etc.
+          anímate a compartir vuestras actividades, proyectos y eventos.
+          Cuantos más seamos, más ganamos todos.</strong>
+        {% endblocktrans %}</p>
+        <div class="civics-about__icons">
+            <div class="civics-about__icons-item">
+                <p class="icon-map"></p>
+                <p class="civics-about__icon-text">
+                    {% trans 'Mapa de iniciativas' %}
+                </p>
+            </div>
+            <span class="plus-icon">+</span>
+            <div class="civics-about__icons-item">
+                <p class="icon-calendar"></p>
+                <p class="civics-about__icon-text">
+                    {% trans 'Mapa de actividades' %}
+                </p>
+            </div>
+            <span class="plus-icon">+</span>
+            <div class="civics-about__icons-item">
+                <p class="icon-info"></p>
+                <p class="civics-about__icon-text">
+                    {% trans 'Información' %}
+                </p>
+            </div>
+        </div>
+        <div class="civics-about__ethic-code">{% blocktrans trimmed %}
+            <h5>Código ético y de convivencia en el proyecto CIVICS</h5>
+            <ul>
+                <li>No se aceptan iniciativas que fomenten expresiones de odio
+                o intolerancia en temas de género, raza, etnia, posición social,
+                orientación sexual, religiosa, o de procedencia.</li>
+                <li>El registro es libre y te facilita que el sistema cree un panel
+                de organización de actividades, temática de la iniciativa,
+                para poder ser modificable por el propio usuario.</li>
+            </ul>
+        {% endblocktrans %}</div>
+        {% url 'privacy' as contact_url %}
+        <div class="civics-about__privacy">{% blocktrans trimmed %}
+            <h5>Política de privacidad</h5>
+            <p>Puedes leer nuestra política de privacidad en la página enlazada
+            a continuación:</p>
+            <a href="{{ contact_url }}">Política de privacidad de civics.cc</a>
+        {% endblocktrans %}</div>
+        <div class="civics-about__credits">
+            {% trans 'Proyecto impulsado por:' %}
+            <div class="civics-about__logos">
+                <img class="civics-about__logo" src="{% img 'logos/vic.jpg' %}" />
+                <img class="civics-about__logo" src="{% img 'logos/segib.png' %}" />
+            </div>
+            {% trans 'Con la colaboración de:' %}
+            <div class="civics-about__logos">
+                {% for i in 26|get_range %}
+                    {% with 'logos/'|addstr:forloop.counter|add:'.png' as url %}
+                    <img class="civics-about__logo" src="{% img url %}" />
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="civics-about__team">{% blocktrans trimmed %}
+            <strong>Son muchas las personas que de una manera y otra han
+            contribuido el desarrollo de esta plataforma digital colaborativa:</strong><br/>
+            Esaú Acosta, Mauro Gil-Fournier, Miguel Jaenicke, Ale, Javier Esquillor,
+            Ana Espejo, Mariluz Arranz, Alejandro Zappala, Alfonzo Urzábal,
+            Chema Blanco, David Ruíz, Carlos Salgado, David Moreno, Alejandro
+            Martín, Julián Pérez, Adriano Belisario, Ines Gil, Héctor Sánchez,
+            Sergio López, David González y Ailin Vera.
+        {% endblocktrans %}</div>
+        <div class="civics-about__license-text">{% blocktrans trimmed %}
+            Esta obra está bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+            Licencia Creative Commons Atribución-CompartirIgual 4.0 internacional</a>
+            Los datos recopilados están bajo <a href="https://opendatacommons.org/licenses/odbl/1.0/" target="_blank">
+            licencia ODbL 1.0.</a>
+            El código fuente de la plataforma está disponible bajo una licencia
+            <a href="https://www.gnu.org/licenses/gpl.html" target="_blank">
+            General Public License 3.0</a>.
+        {% endblocktrans %}</div>
+    </div>
+{% endblock %}
