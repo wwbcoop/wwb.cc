@@ -1,0 +1,5 @@
+# Ignore assets provided by apps
+admin/
+ckeditor/
+leaflet/
+utils/

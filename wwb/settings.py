@@ -46,11 +46,18 @@ SITE_ID = 1
 CONTRIB_APPS = [
     'django.contrib.admin',
     'django.contrib.sites',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'maintenancemode',
+    'djgeojson',
+    'leaflet',
+    'ckeditor',
+    'ckeditor_uploader',
+    'imagekit',
 ]
 
 PROJECT_APPS = [
@@ -130,6 +137,33 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# LEAFLET
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (40.4115, -3.7076),
+    'DEFAULT_ZOOM'  : 5,
+    'MIN_ZOOM'      : 3,
+    'MAX_ZOOM'      : 18,
+    'TILES'         : [('toner', 'https://api.mapbox.com/styles/v1/ale/cj3rpgd2n00142slekpjya98f/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYWxlIiwiYSI6ImpKQ2dnekEifQ.GjyY2X3Wa6pgoHTPOrUBdA', {
+                        'attribution': '<a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a>' })],
+}
+
+
+# CKEDITOR
+CKEDITOR_UPLOAD_PATH = "/inline-images/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'width'  : '100%',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Image' ],
+            ['RemoveFormat', 'Source']
+        ]
+    },
+}
+
 
 #
 # Import private settings

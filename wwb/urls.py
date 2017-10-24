@@ -3,9 +3,13 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
+# contrib
+from contact_form.forms import AkismetContactForm
+from contact_form.views import ContactFormView
 # project
 from django.conf import settings
 from apps.views import views
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
