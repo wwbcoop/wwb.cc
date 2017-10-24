@@ -1,3 +1,9 @@
+# django
 from django.shortcuts import render
+from django.views import View
 
-# Create your views here.
+class FrontView(View):
+    """ Frontpage """
+
+    def get(self, request):
+        return render(request, 'pages/front.html', locals())
