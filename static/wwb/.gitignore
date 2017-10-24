@@ -1,0 +1,4 @@
+# Ignore sass cache and compiled css
+
+css/
+.sass-cache/
