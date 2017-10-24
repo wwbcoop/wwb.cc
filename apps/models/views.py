@@ -21,6 +21,11 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
       context                     = super(ProjectCreate, self).get_context_data(**kwargs)
       context['submit_text']      = _('Guarda el proyecto')
       context['form__html_class'] = 'project'
+      if self.request.POST:
+        context['images'] = forms.ImageFormSet(self.request.POST)
+      else:
+        context['images'] = forms.ImageFormSet()
+        print(context['images'])
       return context
 
     def form_valid(self, form):
