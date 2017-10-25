@@ -3,9 +3,13 @@
 {% block region_content %}
     <div class="region-{{ region_name }}__left">
         <figure class="wwb-logo">
+            <a href="{% url 'front' %}" title="{% trans 'Volver a la página de inicio' %}" >
+                <img src="{% img 'logo-wwb.png' %}" alt="{% trans 'Logo de wwb. Cubo isométrico con líneas de rayas concéntricas.' %}" />
+            </a>
         </figure>
     </div>
     <div class="region-{{ region_name }}__right">
         {% include 'forms/language-switcher.html' %}
+        {% include 'blocks/hamburguer.html' %}
     </div>
 {% endblock %}

@@ -43,10 +43,10 @@
         {# Content layouts #}
         {% block layout %}{% endblock %}
 
-        {# Scripts #}
+        {# Common scripts #}
+        <script src="{% js 'js.js' %}"></script>
+
+        {# Custom page scripts #}
         {% block page_scripts %}{% endblock %}
-        <script type="text/javascript">
-            document.querySelector('.region-content').style.display = 'block';
-        </script>
     </body>
 </html>

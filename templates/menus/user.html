@@ -1,0 +1,31 @@
+{# User menu of the site #} {% load static i18n %}
+
+<nav class="user-menu">
+    <ul class="user-menu__links">
+        {% if request.user.is_staff %}
+        <li class="user-menu__link">
+            <a href="{% url 'modelforms:create_project' %}" title="{% trans 'Crea un proyecto' %}">
+                {% trans 'Añade un proyecto' %}
+            </a>
+        </li>
+        <li class="user-menu__link">
+            <a href="{% url 'admin:login' %}" title="{% trans 'Ir a la sección administrativa' %}">
+                {% trans 'Admin' %}
+            </a>
+        </li>
+        {% endif %}
+        {% if request.user.is_anonymous %}
+        <li class="user-menu__link">
+            <a href="{% url 'auth_login' %}" title="{% trans 'Entra' %}">
+                {% trans 'Login' %}
+            </a>
+        </li>
+        {% else %}
+        <li class="user-menu__link">
+            <a href="{% url 'auth_logout' %}" title="{% trans 'Vete ya' %}">
+                {% trans 'Logout' %}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>

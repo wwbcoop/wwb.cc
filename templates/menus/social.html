@@ -1,0 +1,21 @@
+{# User menu of the site #} {% load static i18n %}
+
+<nav class="social-menu">
+    <ul class="social-menu__links">
+        <li class="social-menu__link">
+            <a href="{% url 'contact_form' %}" title="{% trans 'Contacta con wwb' %}">
+                {% trans 'Contact' %}
+            </a>
+        </li>
+        <li class="social-menu__link">
+            <a href="http://twitter.com" target="_blank" title="{% trans 'Twitter de WWB' %}">
+                {% trans 'Twitter' %}
+            </a>
+        </li>
+        <li class="social-menu__link">
+            <a href="https://github.com/Ale-/webudget" target="_blank" title="{% trans 'Github de WWB' %}">
+                {% trans 'Github' %}
+            </a>
+        </li>
+    </ul>
+</nav>

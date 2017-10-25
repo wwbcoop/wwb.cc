@@ -1,0 +1,21 @@
+// Trigger for navigation
+
+@import compass/css3/transition
+@import compass/css3/transform
+
+.hamburguer-icon
+  +hamburguer-icon($m, $color_text)
+  &:hover
+    cursor: pointer
+  i
+    +transition(transform .25s ease)
+
+.navigation-open .hamburguer-icon
+  i
+    background-color: #555
+  i:first-child
+    +transform(translateY(8px) rotate(45deg))
+  i:nth-child(2)
+    opacity: 0
+  i:last-child
+    +transform(translateY(-10px) rotate(-45deg))

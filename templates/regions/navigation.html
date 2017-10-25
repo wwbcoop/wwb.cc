@@ -1,0 +1,7 @@
+{# Navigation region #} {% extends 'regions/region-base.html' %} {% load utils static i18n %}
+
+{% block region_content %}
+    {% include 'menus/main.html' %}
+    {% include 'menus/user.html' %}
+    {% include 'menus/social.html' %}
+{% endblock %}
