@@ -33,8 +33,8 @@ REGISTRATION_OPEN = True
 REGISTRATION_AUTO_LOGIN = True
 
 # Name of site in the document title
-DOCUMENT_TITLE = 'WWB S. Coop. And.'
-DOCUMENT_DESCRIPTION = _('Cooperativa andaluza de servicios tecnológicos basados en tecnologías libres.')
+DEFAULT_HTML_TITLE = 'WWB'
+DEFAULT_HTML_DESCRIPTION = _('Cooperativa andaluza de servicios tecnológicos basados en tecnologías libres.')
 
 # Sites ID
 SITE_ID = 1
@@ -93,6 +93,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.utils.context_processors.site_info_processor',
             ],
         },
     },
