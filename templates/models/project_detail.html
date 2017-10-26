@@ -1,0 +1,10 @@
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils %}
+
+{% block body_classes %}project{% endblock %}
+{% block html_title %}{{ object.name }} | {% endblock %}
+
+{% block main %}
+<h2>
+    {{ object.name }}
+</h2>
+{% endblock %}

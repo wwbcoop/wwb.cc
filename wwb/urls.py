@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
 # contrib
 from contact_form.forms import AkismetContactForm
 from contact_form.views import ContactFormView
@@ -18,7 +19,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    url(r'^$', views.FrontView.as_view(), name="front"),
+    # Modelforms
     url(r'^',  include('apps.models.urls', namespace='modelforms')),
     # Registration urls
     url(r'^me-olvide-el-pass', auth_views.password_reset, name='password_reset'),
@@ -29,7 +30,14 @@ urlpatterns += i18n_patterns(
     # Contact form
     url(r'^contacta$', ContactFormView.as_view(form_class=AkismetContactForm), name='contact_form'),
     url(r'^contacta/', include('contact_form.urls')),
-
+    # Front
+    url(r'^$', views.FrontView.as_view(), name="front"),
+    # Front
+    url(r'^acerca$', TemplateView.as_view(template_name="pages/about.html"), name="about"),
+    # Projects
+    url(r'^proyectos$', views.ProjectsView.as_view(), name="projects"),
+    # Project
+    url(r'^proyectos/(?P<slug>.+)$', views.ProjectView.as_view(), name="project"),
 )
 
 if settings.DEBUG == True:

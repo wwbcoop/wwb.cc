@@ -1,0 +1,17 @@
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+
+{% block body_classes %}projects{% endblock %}
+{% block html_title %}{% trans 'Proyectos' as page_title %} {{ page_title }} | {% endblock %}
+
+{% block main %}
+  {% trans 'Proyectos' as page_title %}
+  {% include 'pages/title.html' with title=page_title %}
+  {% for project in object_list %}
+      <h2>
+          <a href="{% url 'project' project.slug %}">{{ project.name }}</a>
+      </h2>
+  {% endfor %}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
