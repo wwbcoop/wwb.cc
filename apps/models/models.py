@@ -11,21 +11,23 @@ from django.contrib.contenttypes.models import ContentType
 
 # import project packages
 from .validators import ImageTypeValidator, ImageSizeValidator
+from .utils import RenameProjectImage
 
 # Bound methods moved from model to avoid problems with serialization in migrations
-validate_image_size  = ImageSizeValidator({ 'min_width' : 600, 'min_height' : 300, 'max_width' : 1920, 'max_height' : 1280 })
-validate_image_type  = ImageTypeValidator(["jpeg", "png"])
+validate_image_size = ImageSizeValidator({ 'min_width' : 600, 'min_height' : 300, 'max_width' : 1920, 'max_height' : 1280 })
+validate_image_type = ImageTypeValidator(["jpeg", "png"])
+project_images_path = RenameProjectImage()
 
 
 class Image(models.Model):
     """A model container for image fields."""
 
-    image_file = models.ImageField(_("Archivo"), blank=False,
+    image_file = models.ImageField(_("Archivo"), blank=False, upload_to = project_images_path,
                                     validators = [validate_image_size, validate_image_type],
                                     help_text=_("Sube una imagen representativa haciendo click en la imagen inferior."
                                                 "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
                                                 "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
-    alt_text   = models.CharField(_("Texto alternativo"), max_length=128,
+    alt_text   = models.CharField(_("Texto alternativo"), max_length=128, blank=False,
                  help_text=_("Texto que describe la imagen para screen readers "))
     content_type   = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id      = models.PositiveIntegerField()
@@ -33,7 +35,7 @@ class Image(models.Model):
 
     def __str__(self):
         """String representation of model instances"""
-        return self.alt_text
+        return self.image_file.name
 
 
 class Project(models.Model):

@@ -1,0 +1,44 @@
+// Forms
+
+@import compass/css3/animation
+@import compass/css3/border-radius
+
+.form--project
+  width:  960px
+  max-width: 100%
+  margin: $m*2 auto
+  +generic_form
+  +animation(showup 1s 1)
+
+  input[type=submit]
+    line-height: 12px
+  input[type=text],
+  textarea,
+  select
+    width: 100% !important
+    +border-radius(4px)
+  [class^='field-']
+    padding: $m/2
+  [class^='fieldset-']
+    margin-bottom: $m
+    border-bottom: 1px dashed #ddd
+  .leaflet-container
+    margin: $m 0
+    min-height: 400px
+  .leaflet-control-zoom-out.leaflet-bar-part
+    display: none
+  .placeholder
+    margin-top: $m
+
+.field__widget--picture-preview
+  svg
+    display: block
+    margin: $m/2 auto
+    padding: $m
+    width: 200px
+  #inner
+    fill: rgba(black, .15)
+  #frame
+    fill: none
+    stroke: rgba(black, .15)
+    stroke-width: 10px

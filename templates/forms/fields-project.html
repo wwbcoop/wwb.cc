@@ -6,34 +6,17 @@
     {% include 'forms/field.html' with field=form.name %}
     {% include 'forms/field.html' with field=form.summary %}
     {% if images %}
+        <p class="field__label--images">
+            {% trans 'Project images' %}
+        </p>
+        {{ images.management_form }}
         <div class="form-images">
-            <table class="table">
-                {% for form in images.forms %}
-                    {% if forloop.first %}
-                        <thead>
-                        <tr>
-                            {% for field in form.visible_fields %}
-                                <th>{{ field.label|capfirst }}</th>
-                            {% endfor %}
-                        </tr>
-                        </thead>
-                    {% endif %}
-                    <tr class="formset_row">
-                        {% for field in form.visible_fields %}
-                            <td>
-                                {# Include the hidden fields in the form #}
-                                {% if forloop.first %}
-                                    {% for hidden in form.hidden_fields %}
-                                        {{ hidden }}
-                                    {% endfor %}
-                                {% endif %}
-                                {{ field.errors.as_ul }}
-                                {{ field }}
-                            </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
+            {% for form in images.forms %}
+                <div class="form-images__item fieldset--inline">
+                    {% include 'forms/field.html' with field=form.image_file %}
+                    {% include 'forms/field.html' with field=form.alt_text %}
+                </div>
+            {% endfor %}
         </div>
     {% endif %}
 </div>

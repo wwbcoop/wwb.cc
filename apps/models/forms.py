@@ -1,6 +1,7 @@
 # django
 from django import forms
 from django.contrib.contenttypes.forms import generic_inlineformset_factory
+
 # project
 from . import models
 from apps.utils import widgets
@@ -12,7 +13,7 @@ class ImageForm(forms.ModelForm):
         model  = models.Image
         fields = '__all__'
         widgets = {
-            'image_file' : widgets.PictureWithPreviewWidget(),
+             'image_file' : widgets.PictureWithPreviewWidget(),
         }
 
 
@@ -24,7 +25,8 @@ class ProjectForm(forms.ModelForm):
         fields = '__all__'
     class Media:
         js = ('http://code.jquery.com/jquery-3.2.1.min.js',
-              'utils/js/jquery.formset.js',)
+              'utils/js/jquery.formset.js',
+              'utils/js/picturePreview.js',)
 
 """ Image formset to be included in ModelForms """
-ImageFormSet = generic_inlineformset_factory(models.Image, extra=3, form=ImageForm)
+ImageFormSet        = generic_inlineformset_factory(models.Image, extra=1, form=ImageForm)
