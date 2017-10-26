@@ -1,8 +1,9 @@
-{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils %}
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load i18n static utils %}
+
 {% block body_classes %}front{% endblock %}
+{% block html_title %}{% trans 'Bienvenid@' as page_title %} {{ page_title }} | {% endblock %}
 
 {% block main %}
-  {% lorem %}
 {% endblock %}
 
 {% block page_scripts %}

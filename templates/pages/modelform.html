@@ -1,5 +1,7 @@
 {# Modelform generic page #} {% extends 'layouts/single-fluid-column.html' %} {% load i18n %}
+
 {% block body_classes %}modelform--{{ form__html_class }}{% endblock %}
+{% block html_title %}{{ title }} | {% endblock %}
 
 {% block main %}
     {% include 'pages/title.html' with title=title %}
@@ -9,7 +11,7 @@
 {% block page_scripts %}
     {{ form.media }}
     <script type="text/javascript">
-        $('.formset_row').formset({
+        $('.form-images__item').formset({
           addText: 'Añade otra imagen',
           deleteText: 'remove',
           prefix: 'familymember_set'
