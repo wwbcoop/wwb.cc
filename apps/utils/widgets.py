@@ -8,6 +8,27 @@ from leaflet.forms.widgets import LeafletWidget
 # project
 from django.conf import settings
 
+class SlugWidget(forms.widgets.TextInput):
+
+    def __init__(self, attrs=None, source_field=None):
+        self.source_field = source_field
+        super(SlugWidget, self).__init__(attrs)
+
+    def render(self, name, value, attrs=None):
+        """Render widget"""
+
+        parent_widget = super(SlugWidget, self).render(name, value, attrs)
+        slug_widget = render_to_string("slug-widget.html", {
+            'source'        : self.source_field,
+            'parent_widget' : parent_widget,
+        })
+        return slug_widget
+
+    class Media:
+        """Bind static assets to widget rendering"""
+        js = (
+            'utils/js/SlugWidget.js',
+        )
 
 class ReducedLeafletWidget(LeafletWidget):
     """A custom Leaflet widget, that removes unnecesary feature buttons (polygon, line...)"""
@@ -153,8 +174,9 @@ class SelectOrAddWidget(forms.Select):
 class SelectOrAddMultipleWidget(forms.SelectMultiple):
     """A widget that extends regular select multiple with an icon to launch a popup to add new options."""
 
-    def __init__(self, attrs=None, view_name=None):
+    def __init__(self, attrs=None, view_name=None, link_text="+"):
         self.view_name = view_name
+        self.link_text = link_text
         super(SelectOrAddMultipleWidget, self).__init__(attrs)
 
     class Media:
