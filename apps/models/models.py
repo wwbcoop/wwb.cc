@@ -35,6 +35,9 @@ class RelatedEntity(models.Model):
         """String representation of model instances"""
         return self.name
 
+    class Meta:
+        verbose_name        = _('Entidad relacionada')
+        verbose_name_plural = _('Entidades relacionadas')
 
 class TechTaxonomy(models.Model):
     """A model container for clients."""
@@ -47,6 +50,10 @@ class TechTaxonomy(models.Model):
     def __str__(self):
         """String representation of model instances"""
         return self.name
+
+    class Meta:
+        verbose_name        = _('Tecnología')
+        verbose_name_plural = _('Tecnologías')
 
 
 class Image(models.Model):
@@ -66,6 +73,10 @@ class Image(models.Model):
     def __str__(self):
         """String representation of model instances"""
         return self.image_file.name
+
+    class Meta:
+        verbose_name        = _('Imagen')
+        verbose_name_plural = _('Imágenes')
 
 
 class Project(models.Model):
@@ -103,3 +114,7 @@ class Project(models.Model):
         if not self.id:
             self.creation_date = now
         super(Project, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name        = _('Proyecto')
+        verbose_name_plural = _('Proyectos')
