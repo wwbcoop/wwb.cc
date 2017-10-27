@@ -10,9 +10,3 @@ PROJECT_CATEGORIES = (
     ('DI', _('Diseño')),
     ('TA', _('Talleres y presentaciones')),
 )
-
-ENTITY_CATEGORIES = (
-    ('CL', _('Cliente')),
-    ('CO', _('Colaborador')),
-    ('FI', _('Financiador')),
-)

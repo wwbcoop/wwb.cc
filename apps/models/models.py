@@ -28,8 +28,6 @@ class RelatedEntity(models.Model):
 
     name     = models.CharField(_("Nombre de la entidad"), max_length=128, blank=False)
     link     = models.URLField(_("Enlace a un site relacionado"), help_text=_("Enlace opcional para obtener más info sobre el cliente") )
-    category = models.CharField(_("Categoría"), max_length=128, choices=categories.ENTITY_CATEGORIES,
-               help_text=_("Especifica la relación de la entidad con el proyecto") )
 
     def __str__(self):
         """String representation of model instances"""
@@ -95,8 +93,8 @@ class Project(models.Model):
                      help_text=_("Fecha aproximada de comienzo del proyecto."))
     end_date       = models.DateField(_("Fecha de finalización"), blank=True, null=True,
                      help_text=_("Fecha aproximada de finalización del proyecto."))
-    related_entity = models.ManyToManyField(RelatedEntity, verbose_name=_("Entidades relacionadas"), blank=True,
-                     help_text=_("Especifica aquí los clientes del Proyecto."))
+    clients        = models.ManyToManyField(RelatedEntity, related_name='clients', verbose_name=_("Clientes"), blank=True)
+    collaborators = models.ManyToManyField(RelatedEntity, related_name='collaborators', verbose_name=_("Colaborador@s"), blank=True)
     technology     = models.ManyToManyField(TechTaxonomy, verbose_name=_("Tecnologías empleadas"), blank=True,
                      help_text=_("Especifica aquí tecnologías empleadas en el Proyecto."))
     published      = models.BooleanField(_("Publicado"), blank=False, default=False)
