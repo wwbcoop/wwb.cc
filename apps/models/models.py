@@ -64,6 +64,8 @@ class Image(models.Model):
                                                    "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
     alt_text       = models.CharField(_("Texto alternativo"), max_length=128, blank=False,
                      help_text=_("Texto que describe la imagen para screen readers "))
+    credits        = models.CharField(_("Créditos"), max_length=128, blank=True,
+                     help_text=_("Especifica los créditos de la imagen en caso necesario"))
     content_type   = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id      = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
