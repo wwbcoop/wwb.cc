@@ -88,7 +88,6 @@ class Project(models.Model):
     slug           = models.SlugField(_("Slug"), editable=False, blank=False)
     category       = models.CharField(_("Categoría"), max_length=128, choices=categories.PROJECT_CATEGORIES, blank=False, default='DI',
                      help_text=_("Categoría del proyecto"))
-    published_date = models.DateField(_("Fecha de publicación"), blank=False, null=True, default=now)
     summary        = models.TextField(_("Resumen"), blank=True,
                      help_text=_("Una resumen corto del proyecto para cabeceras y vistas."))
     body           = RichTextUploadingField(_("Descripción del proyecto"), blank=True)
@@ -109,11 +108,7 @@ class Project(models.Model):
 
     def save(self, *args, **kwargs):
         """Custom save functions that populates automatically 'slug' and 'creation_date' fields"""
-        self.update_date = now
         self.slug = slugify(self.name)
-        # Set creation date only when node is saved and hasn't an ID yet, therefore
-        if not self.id:
-            self.creation_date = now
         super(Project, self).save(*args, **kwargs)
 
     class Meta:
