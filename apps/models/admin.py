@@ -9,6 +9,7 @@ from . import models
 class ImageInline(generic.GenericTabularInline):
     model  = models.Image
     extra  = 1
+    sortable_field_name = "position"
 
 class ProjectAdmin(admin.ModelAdmin):
     model = models.Project

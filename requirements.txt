@@ -4,6 +4,7 @@ django-appconf==1.0.2
 django-ckeditor==5.3.0
 django-contact-form==1.4.2
 django-geojson==2.10.0
+django-grappelli==2.10.1
 django-imagekit==4.0.1
 django-js-asset==0.1.1
 django-leaflet==0.22.0

@@ -69,6 +69,7 @@ class Image(models.Model):
     content_type   = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id      = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+    position       = models.PositiveSmallIntegerField("Position", null=True)
 
     def __str__(self):
         """String representation of model instances"""
@@ -77,7 +78,7 @@ class Image(models.Model):
     class Meta:
         verbose_name        = _('Imagen')
         verbose_name_plural = _('Imágenes')
-
+        ordering = ['position']
 
 class Project(models.Model):
     """Projects of wwb.cc"""
