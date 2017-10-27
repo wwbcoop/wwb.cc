@@ -28,7 +28,7 @@ class RelatedEntity(models.Model):
 
     name     = models.CharField(_("Nombre de la entidad"), max_length=128, blank=False)
     link     = models.URLField(_("Enlace a un site relacionado"), help_text=_("Enlace opcional para obtener más info sobre el cliente") )
-    category = models.URLField(_("Categoría"), choices=categories.ENTITY_CATEGORIES,
+    category = models.CharField(_("Categoría"), max_length=128, choices=categories.ENTITY_CATEGORIES,
                help_text=_("Especifica la relación de la entidad con el proyecto") )
 
     def __str__(self):
