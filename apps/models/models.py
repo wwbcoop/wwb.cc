@@ -19,16 +19,41 @@ validate_image_type = ImageTypeValidator(["jpeg", "png"])
 project_images_path = RenameProjectImage()
 
 
+class Client(models.Model):
+    """A model container for clients."""
+
+    name = models.CharField(_("Nombre del client"), max_length=128, blank=False,
+                               help_text=_("Nombre del cliente"))
+    link = models.URLField(_("Enlace a un site relacionado"), help_text=_("Enlace opcional para obtener más info sobre el cliente") )
+
+    def __str__(self):
+        """String representation of model instances"""
+        return self.name
+
+
+class TechTaxonomy(models.Model):
+    """A model container for clients."""
+
+    name        = models.CharField(_("Tecnología"), max_length=128, blank=False,
+                                   help_text=_("Nombre de la tecnología"))
+    description = models.TextField(_("Resumen"), blank=True,
+                                   help_text=_("Una resumen corto de la tecnología."))
+
+    def __str__(self):
+        """String representation of model instances"""
+        return self.name
+
+
 class Image(models.Model):
     """A model container for image fields."""
 
-    image_file = models.ImageField(_("Archivo"), blank=False, upload_to = project_images_path,
-                                    validators = [validate_image_size, validate_image_type],
-                                    help_text=_("Sube una imagen representativa haciendo click en la imagen inferior."
-                                                "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
-                                                "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
-    alt_text   = models.CharField(_("Texto alternativo"), max_length=128, blank=False,
-                 help_text=_("Texto que describe la imagen para screen readers "))
+    image_file     = models.ImageField(_("Archivo"), blank=False, upload_to = project_images_path,
+                                       validators = [validate_image_size, validate_image_type],
+                                       help_text=_("Sube una imagen representativa haciendo click en la imagen inferior."
+                                                   "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
+                                                   "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
+    alt_text       = models.CharField(_("Texto alternativo"), max_length=128, blank=False,
+                     help_text=_("Texto que describe la imagen para screen readers "))
     content_type   = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id      = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
