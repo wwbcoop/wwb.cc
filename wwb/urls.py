@@ -16,11 +16,10 @@ from apps.views import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/',  include('django.conf.urls.i18n')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 urlpatterns += i18n_patterns(
-    # Modelforms
-    url(r'^',  include('apps.models.urls', namespace='modelforms')),
     # Registration urls
     url(r'^me-olvide-el-pass', auth_views.password_reset, name='password_reset'),
     url(r'^confirma-pass/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', auth_views.password_reset_confirm, name="password_reset_confirm"),

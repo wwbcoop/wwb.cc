@@ -4,11 +4,6 @@
     <ul class="user-menu__links">
         {% if request.user.is_staff %}
         <li class="user-menu__link">
-            <a href="{% url 'modelforms:create_project' %}" title="{% trans 'Crea un proyecto' %}">
-                {% trans 'Añade un proyecto' %}
-            </a>
-        </li>
-        <li class="user-menu__link">
             <a href="{% url 'admin:login' %}" title="{% trans 'Ir a la sección administrativa' %}">
                 {% trans 'Admin' %}
             </a>
