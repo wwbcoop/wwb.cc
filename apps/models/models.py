@@ -5,7 +5,7 @@ import time, datetime
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.utils.timezone import now
 
@@ -91,6 +91,7 @@ class Project(models.Model):
     summary        = models.TextField(_("Resumen"), blank=True,
                      help_text=_("Una resumen corto del proyecto para cabeceras y vistas."))
     body           = RichTextUploadingField(_("Descripción del proyecto"), blank=True)
+    images         = GenericRelation(Image, related_query_name='projects')
     start_date     = models.DateField(_("Fecha de comienzo"), blank=True, null=True,
                      help_text=_("Fecha aproximada de comienzo del proyecto."))
     end_date       = models.DateField(_("Fecha de finalización"), blank=True, null=True,

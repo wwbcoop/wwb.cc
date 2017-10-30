@@ -1,5 +1,9 @@
 // Common styles
 
+@import compass/css3/animation
+@import compass/css3/transform
+@import compass/css3/opacity
+
 =link_nocolors
   color: inherit
   &:link, &:visited, &:hover, &:active
@@ -16,11 +20,25 @@
   i
     width: 100%
     display: block
-    height: $side/4
-    margin-bottom: $side/8
+    height: 3px
+    margin-bottom: 6px
     background-color: $color
   i:last-child
     margin-bottom: 0
   &:hover
     i
       background-color: #555
+
++keyframes(fadein)
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
++keyframes(showup)
+  0%
+    +opacity(0)
+    +transform(translate(0, 100px) )
+  100%
+    +opacity(1)
+    +transform(translate(0, 0) )

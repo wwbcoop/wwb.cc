@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 """ Categories used by models """
 
 PROJECT_CATEGORIES = (
-    ('DI', _('Plataformas digitales')),
+    ('PL', _('Plataformas digitales')),
     ('HA', _('Prototipado de hardware')),
     ('IN', _('Instalaciones interactivas')),
     ('CU', _('Gestión y producción cultural')),

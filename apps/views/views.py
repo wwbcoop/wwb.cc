@@ -9,6 +9,7 @@ class FrontView(View):
     """ Frontpage """
 
     def get(self, request):
+        featured = models.Project.objects.all()
         return render(request, 'pages/front.html', locals())
 
 class ProjectsView(ListView):

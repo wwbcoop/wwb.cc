@@ -4,6 +4,53 @@
 {% block html_title %}{% trans 'Bienvenid@' as page_title %} {{ page_title }} | {% endblock %}
 
 {% block main %}
+    <h2 class="landing-text">
+    {% blocktrans trimmed %}
+    <p>WWB es una cooperativa andaluza que trabaja con estándares abiertos y
+    herramientas de software y hardware libre, en proyectos de base tecnológica
+    y de gestión y producción cultural.</p>
+    {% endblocktrans %}
+    </h2>
+    <div class="featured-projects">
+    {% for project in featured %}
+        <div class="featured-projects__item" id="{{ project.slug }}"
+             style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAD0lEQVQImWNgIAcYk64FAAqSADQEC4ljAAAAAElFTkSuQmCC), url({{ project.images.first.image_file.url }});">
+            <a href="{% url 'project' project.slug %}" class="featured-projects__item-meta">
+                <p class="featured-projects__item-meta-category">
+                    <i class="cat-{{ project.category|lower }}"></i> {{ project.get_category_display }}
+                </p>
+                <h3 class="featured-projects__item-meta-title">
+                    {{ project.name }}
+                </h3>
+                <p class="featured-projects__item-meta-description">
+                    {{ project.summary }}
+                </p>
+                <p class="featured-projects__item-see-more">
+                    <span>{% trans 'Ver más' %}</span>
+                </p>
+            </a>
+            {% if request.user.is_staff %}
+            <a href="{% url 'admin:models_project_change' project.pk %}" class="featured-projects__item-edit-link">
+              {% trans 'Editar este proyecto' %}
+            </a>
+            {% endif %}
+            <p class="featured-projects__item-bg-credits">
+                {{ project.images.first.alt_text }} {{ project.images.first.credits }}
+            </p>
+        </div>
+    {% endfor %}
+  </div>
+  <nav class="featured-projects-browser">
+    <span class="featured-projects-browser__title">
+        {% trans 'Proyectos destacados' %}
+    </span>
+    <p class="featured-projects-browser__anchors">
+        {% for project in featured %}
+        <span class="featured-projects-browser__anchor {% if forloop.counter is 1 %}active{% endif %}"
+              onclick="go(this, '#{{ project.slug }}')"></span>
+        {% endfor %}
+    </p>
+  </nav>
 {% endblock %}
 
 {% block page_scripts %}
