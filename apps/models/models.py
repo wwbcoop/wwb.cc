@@ -25,6 +25,22 @@ validate_image_type = ImageTypeValidator(["jpeg", "png"])
 project_images_path = RenameProjectImage()
 
 
+class Link(models.Model):
+    """A model container for clients."""
+
+    name     = models.CharField(_("Nombre del sitio"), max_length=128, blank=False)
+    link     = models.URLField(_("Enlace al site"))
+    summary  = models.TextField(_("Resumen"), blank=True,
+               help_text=_("Una resumen corto opcional del contenido."))
+
+    def __str__(self):
+        """String representation of model instances"""
+        return self.name
+
+    class Meta:
+        verbose_name        = _('Enlace')
+        verbose_name_plural = _('Enlaces')
+
 class RelatedEntity(models.Model):
     """A model container for clients."""
 
@@ -105,10 +121,13 @@ class Project(models.Model):
     collaborators  = models.ManyToManyField(RelatedEntity, related_name='collaborators', verbose_name=_("Colaborador@s"), blank=True)
     technology     = models.ManyToManyField(TechTaxonomy, verbose_name=_("Tecnologías empleadas"), blank=True,
                      help_text=_("Especifica aquí tecnologías empleadas en el Proyecto."))
+    links          = models.ManyToManyField(Link, verbose_name=_("Enlaces"), blank=True,
+                     help_text=_("Especifica aquí enlaces para ampliar información del proyecto."))
     related        = models.ManyToManyField('models.Project', verbose_name=_("Proyectos relacionados"), blank=True,
                      help_text=_("Otros proyectos relacionados con éste."))
     published      = models.BooleanField(_("Publicado"), blank=False, default=False)
     featured       = models.BooleanField(_("Destacado"), blank=False, default=False)
+
 
     def __str__(self):
         """String representation of model instances"""

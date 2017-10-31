@@ -18,6 +18,7 @@ class ProjectAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(models.Image)
+admin.site.register(models.Link)
 admin.site.register(models.Project, ProjectAdmin)
 admin.site.register(models.RelatedEntity)
 admin.site.register(models.TechTaxonomy)

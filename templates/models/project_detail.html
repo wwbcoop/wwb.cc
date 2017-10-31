@@ -18,6 +18,33 @@
         {{ object.body | safe }}
     </div>
     {% endif %}
+    {% if object.links.count %}
+    <ul class="project__links">
+        <h5 class="project__links-title">
+            {% trans 'Enlaces' %}
+        </h5>
+        {% for link in object.links.all %}
+        <li class="project__link">
+            {{ link.name }}, <a href="{{ link.link }}" target="_blank">{{ link.link }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if object.related.count %}
+    <div class="project__related">
+        <h5 class="project__related-title">{% trans 'Proyectos relacionados' %}</h5>
+        <ul class="project__related-list">
+        {% for related_project in object.related.all %}
+            <li>
+                <a href="{% url 'project' related_project.slug %}">
+                    <img src="{% get_media_prefix %}{{ related_project.images.first.thumbnail }}" />
+                    <h5>{{ related_project.name }}</h5>
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
     <div class="project__meta">
         <p class="project__date">
             Año de finalización: {{ object.end_date | date:"Y" }}
@@ -58,21 +85,6 @@
         </p>
         {% endif %}
     </div>
-    {% if object.related.count %}
-    <div class="project__related">
-        <h4 class="project__related-title">{% trans 'Proyectos relacionados' %}</h4>
-        <ul class="project__related-list">
-        {% for related_project in object.related.all %}
-            <li>
-                <a href="{% url 'project' related_project.slug %}">
-                    <img src="{% get_media_prefix %}{{ related_project.images.first.thumbnail }}" />
-                    <h5>{{ related_project.name }}</h5>
-                </a>
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
     {% if request.user.is_staff %}
     <p class="project__edit-link">
         <a href="{% url 'admin:models_project_change' object.pk %}">
