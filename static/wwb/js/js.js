@@ -76,6 +76,29 @@ document.addEventListener("DOMContentLoaded", function(){
       document.body.classList.toggle('navigation-open');
   };
 
+  // Detect scroll on frontpage
+  var sections = document.querySelectorAll('.featured-projects__item');
+  var anchors = document.querySelectorAll('.featured-projects-browser__anchor');
+  var h       = window.pageYOffset;
+  var vh      = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  var current = Math.floor(h/vh);
+  window.addEventListener('scroll', function() {
+      h       = window.pageYOffset;
+      vh      = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      current = Math.floor(h/vh);
+      if(!anchors[current].classList.contains('active')){
+          anchors.forEach( function(i){ i.classList.remove('active'); });
+          anchors[current].classList.add('active')
+      }
+  });
+  function slideshow(){
+      setTimeout(function() {
+          requestAnimationFrame(slideshow);
+          scrollTo(sections[(current+1)%sections.length], 1000, function(t){ return t < 0.5 ? 2*t*t : (4-2*t)*t - 1; });
+      }, 5000);
+  }
+  requestAnimationFrame(slideshow);
+
   // FOUC
   document.querySelector('.region-content').style.display = 'block';
 
