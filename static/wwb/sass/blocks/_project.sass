@@ -2,6 +2,7 @@
 
 @import clearfix
 @import compass/css3/box-shadow
+@import compass/css3/border-radius
 
 .project-left
   display: inline-block
@@ -24,6 +25,7 @@
 
 .project__meta
   padding: $m 0
+  margin-top: $m*2
   border-top: 4px solid $color_text
   border-bottom: 4px solid $color_text
   font-size: .9em
@@ -44,6 +46,7 @@
 
 .project__summary
   max-width: 66%
+  margin-bottom: $m
   +h(4)
 
 .project__body
@@ -71,3 +74,17 @@
   color: white
   font-size: .75em
   padding-left: $m
+
+.project__related-title
+  margin-bottom: $m/2
+
+.project__related
+  +links_nocolors
+  img
+    max-width: 50px
+    +border-radius(50%)
+  img, h5
+    vertical-align: middle
+    display: inline-block
+  h5
+    margin-left: $m/2

@@ -1,4 +1,4 @@
-{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n imagekit %}
 
 {% block body_classes %}project{% endblock %}
 {% block html_title %}{{ object.name }} | {% endblock %}
@@ -64,7 +64,10 @@
         <ul class="project__related-list">
         {% for related_project in object.related.all %}
             <li>
-                <a href="{% url 'project' related_project.slug %}">{{ related_project.name }}</a>
+                <a href="{% url 'project' related_project.slug %}">
+                    <img src="{% get_media_prefix %}{{ related_project.images.first.thumbnail }}" />
+                    <h5>{{ related_project.name }}</h5>
+                </a>
             </li>
         {% endfor %}
         </ul>
@@ -79,7 +82,7 @@
 <div class="project-right">
     {% for image in project.images.all %}
         <figure class="project__image">
-            <img src="{{ image.image_file.url }}" />
+            <img src="{% get_media_prefix %}{{ image.big_size }}" />
             <figcaption class="project__image-caption">
                 ^ {{ image.alt_text }} · {% trans 'Fuente:' %} {{ image.credits }}
             </figcaption>
