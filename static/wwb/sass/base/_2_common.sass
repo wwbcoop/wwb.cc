@@ -12,6 +12,18 @@
   a
     +link_nocolors
 
+=link_white_yellow
+  +transition(color .5s ease)
+  &:link, &:visited
+    color: white
+  &:hover
+    color: yellow
+  &:active
+    color: white
+=links_white_yellow
+  a
+    +link_white_yellow
+
 // Hamburguer icon (for navigations)
 =hamburguer-icon($side, $color)
   width: $side
