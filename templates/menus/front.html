@@ -1,0 +1,21 @@
+{# Main menu of the site #} {% load static i18n %}
+
+<nav class="front-menu">
+    <ul class="front-menu__links">
+        <li class="front-menu__link">
+            <a href="{% url 'about' %}" title="{% trans 'Acerca de WWB' %}">
+                {% trans 'Acerca' %}
+            </a>
+        </li>
+        <li class="front-menu__link">
+            <a href="{% url 'projects' %}" title="{% trans 'Ver nuestros proyectos' %}">
+                {% trans 'Proyectos' %}
+            </a>
+        </li>
+        <li class="front-menu__link">
+            <a href="{% url 'contact_form' %}" title="{% trans 'Contacta con wwb' %}">
+                {% trans 'Contacta' %}
+            </a>
+        </li>
+    </ul>
+</nav>

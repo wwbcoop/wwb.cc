@@ -9,13 +9,16 @@ class FrontView(View):
     """ Frontpage """
 
     def get(self, request):
-        featured = models.Project.objects.all()
+        featured = models.Project.objects.filter(published=True, featured=True).order_by('?')
         return render(request, 'pages/front.html', locals())
 
 class ProjectsView(ListView):
     """ List of projects """
 
     model = models.Project
+
+    def get_queryset(self):
+        return models.Project.objects.filter(published=True).order_by('-end_date')
 
 class ProjectView(DetailView):
     """ View of single project """

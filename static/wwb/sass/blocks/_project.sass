@@ -1,0 +1,65 @@
+// Project item page
+
+@import clearfix
+@import compass/css3/box-shadow
+
+.project-left
+  display: inline-block
+  width: 50vw
+  position: fixed
+  padding: $m*7 $m*3 $m
+  left: 0
+  top: 0
+  max-height: 100vh
+  overflow-y: auto
+
+.project-right
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAD0lEQVQImWNgQAX/yeAAAIHCA/0RE2WAAAAAAElFTkSuQmCC) repeat #202020
+  display: inline-block
+  width: 50vw
+  min-height: 100vh
+  position: absolute
+  right: 0
+  top: 0
+
+.project__meta
+  padding: $m 0
+  border-top: 4px solid $color_text
+  font-size: .9em
+  text-transform: uppercase
+  +clearfix
+  +links_nocolors
+  a
+    border-bottom: 1px dotted yellow
+    +h(5)
+  p
+    margin-bottom: $m/3
+
+.project__summary
+  max-width: 66%
+  +h(4)
+
+.project__body
+  margin: $m*2 0
+
+.project__summary p
+  display: inline
+  background: yellow
+  line-height: 1.4
+
+.project__edit-link
+  position: absolute
+  right: 0
+  top: 0
+  padding: $m*2
+  +links_nocolors
+  text-transform: uppercase
+  +h(5)
+
+.project__image
+  +animation(fadein 1s 1)
+
+.project__image-caption
+  color: white
+  font-size: .75em
+  padding-left: $m

@@ -4,13 +4,16 @@
 {% block html_title %}{% trans 'Bienvenid@' as page_title %} {{ page_title }} | {% endblock %}
 
 {% block main %}
-    <h2 class="landing-text">
-    {% blocktrans trimmed %}
-    <p>WWB es una cooperativa andaluza que trabaja con estándares abiertos y
-    herramientas de software y hardware libre, en proyectos de base tecnológica
-    y de gestión y producción cultural.</p>
-    {% endblocktrans %}
-    </h2>
+    <div class="landing">
+        <h2 class="landing-text">
+            {% blocktrans trimmed %}
+            <p>WWB es una cooperativa andaluza que trabaja con estándares abiertos y
+            herramientas de software y hardware libre, en proyectos de base tecnológica
+            y de gestión y producción cultural.</p>
+            {% endblocktrans %}
+        </h2>
+        {% include 'menus/front.html' %}
+    </div>
     <div class="featured-projects">
     {% for project in featured %}
         <div class="featured-projects__item" id="{{ project.slug }}"

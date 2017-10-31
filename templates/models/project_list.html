@@ -1,4 +1,4 @@
-{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{# Site front page #} {% extends 'layouts/single-fixed-column.html' %} {% load static utils i18n %}
 
 {% block body_classes %}projects{% endblock %}
 {% block html_title %}{% trans 'Proyectos' as page_title %} {{ page_title }} | {% endblock %}
@@ -6,11 +6,70 @@
 {% block main %}
   {% trans 'Proyectos' as page_title %}
   {% include 'pages/title.html' with title=page_title %}
-  {% for project in object_list %}
-      <h2>
-          <a href="{% url 'project' project.slug %}">{{ project.name }}</a>
-      </h2>
+  <div class="page-breadcrumb">
+      <a href="/">Inicio</a> » <span class="no-link">Proyectos</span>
+  </div>
+  <div class="projects-sidebar">
+      <p class="projects-text">
+      {% blocktrans trimmed %}
+      Esta es una lista de proyectos donde WWB ha trabajado.
+      Puedes usar la leyenda inferior para filtrar los proyectos visibles. Más abajo
+      puedes encontrar también algunos proyectos que están en desarrollo actualmente.
+      {% endblocktrans %}
+      </p>
+      {% if request.user.is_staff %}
+      <p class="projects-add">
+          <a href="{% url 'admin:models_project_add' %}">{% trans 'Añadir un proyecto' %}</a>
+      </p>
+      {% endif %}
+      <ul class="projects-filters">
+          <h4 class="projects-filters__title">{% trans 'Categorías' %}</h4>
+          <li class="cat-pl active" onclick="show('pl')">{% trans 'Plataformas digitales' %}</li>
+          <li class="cat-ha active" onclick="show('ha')">{% trans 'Prototipado de hardware' %}</li>
+          <li class="cat-in active" onclick="show('in')">{% trans 'Instalaciones interactivas' %}</li>
+          <li class="cat-cu active" onclick="show('cu')">{% trans 'Gestión y producción cultural' %}</li>
+          <li class="cat-di active" onclick="show('si')">{% trans 'Diseño' %}</li>
+          <li class="cat-ta active" onclick="show('ta')">{% trans 'Talleres y presentaciones' %}</li>
+          <li class="active" onclick="show('all')"><strong>{% trans 'Ver todo' %}</strong></li>
+      </ul>
+  </div>
+  <div class="projects">
+  {% for project in project_list %}
+      <div class="cat-{{ project.category|lower}} projects__item active">
+          <a href="{% url 'project' project.slug %}">
+              <div class="projects__item-header">
+                  <figure class="projects__item-image">
+                      <img src="{{ project.images.first.image_file.url }}" />
+                  </figure>
+                  {% if project.end_date %}
+                  <p class="projects__item-year">
+                    {{ project.end_date | date:"Y" }}
+                  </p>
+                  {% endif %}
+              </div>
+              <div class="projects__item-meta">
+                  <p class="projects__item-meta-category">
+                      <i class="cat-{{ project.category|lower }}"></i> {{ project.get_category_display }}
+                  </p>
+                  <h4 class="projects__item-meta-title">
+                      {{ project.name }}
+                  </h4>
+                  <p class="projects__item-meta-description">
+                      {{ project.summary }}
+                  </p>
+                  <p class="projects__item-see-more">
+                      <span>{% trans 'Ver detalles de' %} {{ project.name }}</span>
+                  </p>
+              </div>
+          </a>
+          {% if request.user.is_staff %}
+          <a href="{% url 'admin:models_project_change' project.pk %}" class="projects__item-edit-link">
+            {% trans 'EDITA' %}
+          </a>
+          {% endif %}
+      </div>
   {% endfor %}
+  </div>
 {% endblock %}
 
 {% block page_scripts %}

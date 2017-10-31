@@ -1,10 +1,77 @@
-{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils %}
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
 
 {% block body_classes %}project{% endblock %}
 {% block html_title %}{{ object.name }} | {% endblock %}
 
+
 {% block main %}
-<h2>
-    {{ object.name }}
-</h2>
+{% include 'pages/title.html' with title=object.name %}
+<div class="page-breadcrumb">
+    <a href="/">Inicio</a> » <a href="{% url 'projects' %}">Proyectos</a> » <span class="no-link">{{ object.name }}</span>
+</div>
+<div class="project-left">
+    <div class="project__summary">
+        <p>{{ object.summary }}</p>
+    </div>
+    {% if project.body %}
+    <div class="project__body">
+        {{ object.body | safe }}
+    </div>
+    {% endif %}
+    <div class="project__meta">
+        <p class="project__date">
+            Año de finalización: {{ object.end_date | date:"Y" }}
+        </p>
+        <p class="project__category">
+            Categoría principal: {{ object.get_category_display }}
+        </p>
+        {% if project.clients.count %}
+        <p class="project__clients">
+            <span>{% trans 'Clientes/Promotores' %}: </span>
+            {% for client in project.clients.all %}
+                <a href="{{ client.link }}" target="_blank"
+                   title="{% trans 'Visitar la página de' %} {{ client.name }}">
+                    {{ client.name }}
+                </a>
+            {% endfor %}
+        </p>
+        {% endif %}
+        {% if project.collaborators.count %}
+        <p class="project__colaboradores">
+            <span>{% trans 'Colaboradores/coautores' %}: </span>
+            {% for collaborator in project.collaborators.all %}
+                <a href="{{ collaborator.link }}" target="_blank"
+                   title="{% trans 'Visitar la página de' %} {{ collaborator.name }}">
+                    {{ collaborator.name }}
+                </a>
+            {% endfor %}
+        </p>
+        {% endif %}
+        {% if project.technology.count %}
+        <p class="project__technologies">
+            <span>{% trans 'Tecnologías' %}: </span>
+            {% for tech in project.technology.all %}
+                <a href="/" title="{% trans 'Ver proyectos hechos con esta tecnología">
+                    {{ tech.name }}
+                </a>
+            {% endfor %}
+        </p>
+        {% endif %}
+    </div>
+    <p class="project__edit-link">
+        <a href="{% url 'admin:models_project_change' object.pk %}">
+          {% trans 'Edita' %}
+        </a>
+    </p>
+</div>
+<div class="project-right">
+    {% for image in project.images.all %}
+        <figure class="project__image">
+            <img src="{{ image.image_file.url }}" />
+            <figcaption class="project__image-caption">
+                ^ {{ image.alt_text }} · {% trans 'Fuente:' %} {{ image.credits }}
+            </figcaption>
+        </figure>
+    {% endfor %}
+</div>
 {% endblock %}

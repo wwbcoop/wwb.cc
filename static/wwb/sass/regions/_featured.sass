@@ -75,9 +75,10 @@
   position: absolute
   font-size: .8em
   +transform-origin(0, 0)
-  background: white
+  background: #111
+  color: white
   padding: $m/6
-  +transform(translate(0, calc(100vh - 8px)) rotate(-90deg))
+  +transform(translate(-4px, 100vh) rotate(-90deg))
 
 .featured-projects-browser
   position: fixed
@@ -85,7 +86,7 @@
   right: 4px
   bottom: 4px
   line-height: $m
-  background: #222
+  background: #111
   padding: 0 $m
   text-align: right
 
@@ -134,7 +135,7 @@
   position: absolute
   z-index: 100
   left: $m + 16px
-  bottom: $m
+  bottom: $m - 4px
   padding: $m/2
   +h(5)
   +link_nocolors

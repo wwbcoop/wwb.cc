@@ -53,6 +53,21 @@ function go(el, target){
   scrollTo( document.querySelector(target), 1000, function(t){ return t < 0.5 ? 2*t*t : (4-2*t)*t - 1; })
 }
 
+function show(cat){
+    if(cat=='all'){
+        document.querySelectorAll('[class*="cat-"]').forEach( function(i){
+            i.classList.add('active');
+        });
+    } else {
+        document.querySelectorAll('[class*="cat-"]').forEach( function(i){
+            i.classList.remove('active');
+        });
+        document.querySelectorAll('.cat-' + cat).forEach( function(i){
+            i.classList.add('active');
+        });
+    }
+}
+
 // Vanilla JS equivalent of jQuery document.ready
 document.addEventListener("DOMContentLoaded", function(){
 
