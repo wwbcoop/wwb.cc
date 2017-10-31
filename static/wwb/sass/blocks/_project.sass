@@ -25,13 +25,20 @@
 .project__meta
   padding: $m 0
   border-top: 4px solid $color_text
+  border-bottom: 4px solid $color_text
   font-size: .9em
   text-transform: uppercase
   +clearfix
   +links_nocolors
   a
     border-bottom: 1px dotted yellow
+    margin-right: $m/2
     +h(5)
+    &::after
+      content: "[↗] "
+      color: #aaa
+    &:hover
+      border-bottom: 2px solid $color_text
   p
     margin-bottom: $m/3
 
@@ -41,6 +48,7 @@
 
 .project__body
   margin: $m*2 0
+  column-count: 2
 
 .project__summary p
   display: inline

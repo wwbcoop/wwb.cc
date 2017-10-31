@@ -97,9 +97,11 @@ class Project(models.Model):
     end_date       = models.DateField(_("Fecha de finalización"), blank=True, null=True,
                      help_text=_("Fecha aproximada de finalización del proyecto."))
     clients        = models.ManyToManyField(RelatedEntity, related_name='clients', verbose_name=_("Clientes"), blank=True)
-    collaborators = models.ManyToManyField(RelatedEntity, related_name='collaborators', verbose_name=_("Colaborador@s"), blank=True)
+    collaborators  = models.ManyToManyField(RelatedEntity, related_name='collaborators', verbose_name=_("Colaborador@s"), blank=True)
     technology     = models.ManyToManyField(TechTaxonomy, verbose_name=_("Tecnologías empleadas"), blank=True,
                      help_text=_("Especifica aquí tecnologías empleadas en el Proyecto."))
+    related        = models.ManyToManyField('models.Project', verbose_name=_("Proyectos relacionados"), blank=True,
+                     help_text=_("Otros proyectos relacionados con éste."))
     published      = models.BooleanField(_("Publicado"), blank=False, default=False)
     featured       = models.BooleanField(_("Destacado"), blank=False, default=False)
 

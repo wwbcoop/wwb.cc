@@ -58,6 +58,18 @@
         </p>
         {% endif %}
     </div>
+    {% if object.related.count %}
+    <div class="project__related">
+        <h4 class="project__related-title">{% trans 'Proyectos relacionados' %}</h4>
+        <ul class="project__related-list">
+        {% for related_project in object.related.all %}
+            <li>
+                <a href="{% url 'project' related_project.slug %}">{{ related_project.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
     <p class="project__edit-link">
         <a href="{% url 'admin:models_project_change' object.pk %}">
           {% trans 'Edita' %}
