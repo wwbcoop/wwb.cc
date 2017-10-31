@@ -73,11 +73,13 @@
         </ul>
     </div>
     {% endif %}
+    {% if request.user.is_staff %}
     <p class="project__edit-link">
         <a href="{% url 'admin:models_project_change' object.pk %}">
           {% trans 'Edita' %}
         </a>
     </p>
+    {% endif %}
 </div>
 <div class="project-right">
     {% for image in project.images.all %}
