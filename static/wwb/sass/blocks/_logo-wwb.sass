@@ -1,10 +1,13 @@
 // Site brand
 
 .wwb-logo img
-  position: fixed
-  top: $m
-  left: $m/2
-  max-width: 100px
-  padding: $m/2
-  z-index: 1000
-  mix-blend-mode: multiply
+  max-width: 60px
+  margin: $m $m/2 0
+  +breakpoint('sm')
+    max-width: 100px
+    padding: $m/2
+    position: fixed
+    margin: 0
+    top: $m
+    left: $m/2
+    z-index: 1000

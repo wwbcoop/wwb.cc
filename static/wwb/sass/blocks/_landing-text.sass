@@ -3,14 +3,15 @@
 @import compass/css3/transition
 
 .landing
-  position: fixed
-  width: 480px
-  top: 0
-  left: $m*5
-  text-align: center
+  +breakpoint('sm')
+    position: fixed
+    width: 360px
+    top: 0
+    left: $m*5
+    text-align: center
 
 .landing-text
-  font-size: 1.5em
+  font-size: 1.25em
   line-height: 1.3
   text-transform: uppercase
   p
@@ -20,12 +21,14 @@
     padding: 0 $m/2
 
 .front-menu
+  +breakpoint('xs')
+    display: none
   margin: 0
   letter-spacing: 1px
   +links_nocolors
   +h(5)
   text-transform: uppercase
-  background: rgba(yellow, .5)
+  background: yellow
 
 .front-menu__link
   display: inline

@@ -5,35 +5,51 @@
 @import compass/css3/border-radius
 
 .about-left
-  display: inline-block
-  width: 50vw
-  position: fixed
-  padding: $m*7 $m*3 $m
-  left: 0
-  top: 0
-  max-height: 100vh
-  overflow-y: auto
+  +breakpoint('md')
+    display: inline-block
+    width: 50vw
+    position: fixed
+    padding: $m*7 0 $m
+    left: 0
+    top: 0
+    max-height: 100vh
+    overflow-y: auto
+  +breakpoint('lg')
+    padding: $m*7 $m*2 $m
 
 .about-right
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAD0lEQVQImWNgQAX/yeAAAIHCA/0RE2WAAAAAAElFTkSuQmCC) repeat #202020
-  display: inline-block
-  width: 50vw
-  min-height: 100vh
-  position: absolute
-  right: 0
-  top: 0
+  +breakpoint('md')
+    display: inline-block
+    width: 50vw
+    min-height: 100vh
+    position: absolute
+    right: 0
+    top: 0
 
 .about-text__intro
-  margin: $m $m*2 $m*3
-  +h(3)
+  margin: $m
+  +h(4)
+  +breakpoint('sm')
+    margin: 0 $m
+  +breakpoint('lg')
+    width: 66%
+    margin-bottom: $m*2
+
+.about-text__body
+  margin: $m
+  +breakpoint('lg')
+    column-count: 2
 
 .about-remarked
+  +breakpoint('xs')
+    display: none
   position: absolute
   left: $m
   top: $m
   width: 300px
   z-index: 9000
-  +h(2)
+  +h(3)
   mix-blend-mode: multiply
   p
     display: inline

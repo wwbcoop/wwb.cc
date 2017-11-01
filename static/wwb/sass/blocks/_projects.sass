@@ -2,11 +2,27 @@
 
 @import columns_masonry
 
+.projects-sidebar
+  +breakpoint('xs')
+    padding: $m
+  +breakpoint('sm')
+    position: fixed
+    top: $m*7
+    width: calc(33% - 16px)
+    padding-right: $m
+  +breakpoint('lg')
+    width: calc(25% - 16px)
+
+
 div.projects
-  margin-left: 25%
   margin-top: $m*1.25
-  +columns_masonry(1,2,3,3,'projects__item','few', $m/4)
   +animation(showup 1s 1)
+  +columns_masonry(1,2,3,3,'projects__item','few', $m/4)
+  +breakpoint('sm')
+    margin-left: 33%
+  +breakpoint('lg')
+    margin-left: 25%
+
 
 .projects__item
   position: relative
@@ -54,17 +70,12 @@ div.projects
     &:hover
       background-color: darken(yellow, 5%)
 
-.projects-sidebar
-  position: fixed
-  top: $m*7
-  padding: $m
-  width: 25%
-
 .projects-filters
-  padding: 0 $m
-  margin-top: $m*2
-  border-left: 4px solid #111
   font-size: .9em
+  margin-top: $m*2
+  +breakpoint('lg')
+    padding: 0 $m
+    border-left: 4px solid #111
   li
     +transition(margin .25s ease)
     cursor: pointer

@@ -5,23 +5,27 @@
 @import compass/css3/border-radius
 
 .project-left
-  display: inline-block
-  width: 50vw
-  position: fixed
-  padding: $m*7 $m*3 $m
-  left: 0
-  top: 0
-  max-height: 100vh
-  overflow-y: auto
+  +breakpoint('sm')
+    position: fixed
+    display: inline-block
+    width: 50vw
+    left: 0
+    top: 0
+    max-height: 100vh
+    overflow-y: auto
+    padding: $m*7 $m $m
+  +breakpoint('xl')
+    padding: $m*7 $m*3 $m
 
 .project-right
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAD0lEQVQImWNgQAX/yeAAAIHCA/0RE2WAAAAAAElFTkSuQmCC) repeat #202020
-  display: inline-block
-  width: 50vw
-  min-height: 100vh
-  position: absolute
-  right: 0
-  top: 0
+  +breakpoint('sm')
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAD0lEQVQImWNgQAX/yeAAAIHCA/0RE2WAAAAAAElFTkSuQmCC) repeat #202020
+    display: inline-block
+    width: 50vw
+    min-height: 100vh
+    position: absolute
+    right: 0
+    top: 0
 
 .project__meta
   padding: $m 0
@@ -45,13 +49,16 @@
     margin-bottom: $m/3
 
 .project__summary
-  max-width: 66%
-  margin-bottom: $m
   +h(4)
+  margin: $m 0
+  +breakpoint('lg')
+    max-width: 66%
+    margin-top: 0
 
 .project__body
   margin: $m*2 0
-  column-count: 2
+  +breakpoint('lg')
+    column-count: 2
 
 .project__summary p
   display: inline
@@ -60,9 +67,12 @@
 
 .project__edit-link
   position: absolute
-  right: 0
-  top: 0
   padding: $m*2
+  top: $m
+  right: -$m
+  +breakpoint('sm')
+    top: 0
+    right: 0
   +links_nocolors
   text-transform: uppercase
   +h(5)
@@ -77,9 +87,9 @@
 
 .project__related-title
   margin: $m 0 $m/3 !important
+  text-decoration: underline
 
 .project__related
-  padding: 0 $m*2
   text-transform: uppercase
   +links_nocolors
   img
@@ -95,7 +105,6 @@
   text-transform: uppercase
   +links_nocolors
   font-size: .9em
-  padding: 0 $m*2
   margin-bottom: $m/2
   a
     border-bottom: 1px dotted yellow
@@ -109,3 +118,4 @@
       border-bottom: 2px solid $color_text
 .project__links-title
   margin: 0 0 $m/2
+  text-decoration: underline

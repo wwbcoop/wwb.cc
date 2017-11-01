@@ -5,10 +5,10 @@
 
 {% block main %}
   {% trans 'Proyectos' as page_title %}
-  {% include 'pages/title.html' with title=page_title %}
   <div class="page-breadcrumb">
       <a href="/">Inicio</a> » <span class="no-link">Proyectos</span>
   </div>
+  {% include 'pages/title.html' with title=page_title %}
   <div class="projects-sidebar">
       <p class="projects-text">
       {% blocktrans trimmed %}
