@@ -1,14 +1,80 @@
-{# About page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{# About page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n leaflet_tags %}
 
 {% block body_classes %}about{% endblock %}
 {% block html_title %}{% trans 'Acerca' as page_title %} {{ page_title }} | {% endblock %}
 
+{# Page styles #}
+{% block page_header %}
+     {% leaflet_css %}
+{% endblock %}
+
+
 {% block main %}
+    <div class="page-breadcrumb">
+        <a href="/">Inicio</a> » <span class="no-link">Acerca</span>
+    </div>
     {% trans 'Acerca' as page_title %}
     {% include 'pages/title.html' with title=page_title %}
-    {% blocktrans trimmed %}
-    WWB es una cooperativa andaluza que trabaja con estándares abiertos y
-    herramientas de software y hardware libre, en proyectos tecnológicos y de
-    gestión y producción cultural.
-    {% endblocktrans %}
+    <div class="about-left">
+        <div class="about-text__intro">
+        {% blocktrans trimmed %}
+            Somos una cooperativa formada por un equipo con experiencia en los
+            mundos de la arquitectura y la media-arquitectura, la programación y
+            administración de sistemas, el diseño y la comunicación, la creación
+            de instalaciones y el trabajo con hardware... y la docencia y
+            consultoría en todos los campos en los que trabajamos.
+            Ésto, unido una amplia red de colaboradores nos permite enfrentarnos
+            a proyectos con múltiples frentes, siempre usando de manera mayoritaria
+            tecnologías libres y de código abierto.
+        {% endblocktrans %}
+        </div>
+        <div class="about-text__body">
+        {% blocktrans trimmed %}
+            In et sed qui necessitatibus quia autem. Temporibus voluptas alias
+            voluptatem incidunt nobis et debitis distinctio. Est ut laudantium
+            aspernatur consequatur quo. Est omnis recusandae suscipit exercitationem
+            necessitatibus.
+            Sit dolorem et adipisci omnis provident. Eligendi eaque saepe nobis
+            omnis fugit praesentium. Natus corporis a iure.
+            Itaque quia illo quo accusantium. Fugit molestias libero itaque.
+            Rerum maiores iste placeat voluptatem. Laudantium exercitationem
+            dolores ipsam et. Unde eligendi consequatur libero excepturi accusamus veritatis.
+            Quos doloremque inventore ut dolores vel numquam sunt architecto.
+            Aliquam accusantium assumenda recusandae dolores. Sint iste quos
+            iste eum sed nobis accusamus facilis.
+            Consequatur tempore voluptatem ex nulla. Voluptatum maiores odit
+            natus beatae. Assumenda molestias iste et corporis sit sint id quae.
+        {% endblocktrans %}
+        </div>
+    </div>
+    <div class="about-right">
+        <div class="about-remarked">
+            <p>
+            {% blocktrans trimmed %}
+            WWB es una cooperativa andaluza que trabaja con estándares abiertos y
+            herramientas de software y hardware libre, en proyectos de base tecnológica
+            y de gestión y producción cultural.
+            {% endblocktrans %}
+            </p>
+        </div>
+        {% leaflet_map "about_map" %}
+    </div>
+{% endblock %}
+
+{# Page styles #}
+{% block page_scripts %}
+    {% leaflet_js %}
+    <script type="text/javascript">
+        window.addEventListener("map:init", function (e) {
+            var detail = e.detail;
+            var icon = L.divIcon({
+                    'iconSize'    : [50, 58],
+                    'iconAnchor'  : [25, 29],
+                    'html'        : "<div class='wwb-marker'><img src='/static/wwb/img/logo-wwb.png'/></div>",
+                })
+            L.marker([37.3988365,-5.9958967], {
+                'icon' : icon,
+            }).addTo(detail.map);
+        }, false);
+    </script>
 {% endblock %}

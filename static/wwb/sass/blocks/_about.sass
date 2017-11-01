@@ -1,0 +1,55 @@
+// Project item page
+
+@import clearfix
+@import compass/css3/box-shadow
+@import compass/css3/border-radius
+
+.about-left
+  display: inline-block
+  width: 50vw
+  position: fixed
+  padding: $m*7 $m*3 $m
+  left: 0
+  top: 0
+  max-height: 100vh
+  overflow-y: auto
+
+.about-right
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAD0lEQVQImWNgQAX/yeAAAIHCA/0RE2WAAAAAAElFTkSuQmCC) repeat #202020
+  display: inline-block
+  width: 50vw
+  min-height: 100vh
+  position: absolute
+  right: 0
+  top: 0
+
+.about-text__intro
+  margin: $m $m*2 $m*3
+  +h(3)
+
+.about-remarked
+  position: absolute
+  left: $m
+  top: $m
+  width: 300px
+  z-index: 9000
+  +h(2)
+  mix-blend-mode: multiply
+  p
+    display: inline
+    background: yellow
+    color: #111
+    line-height: 1.3
+    text-shadow: 0 0 5px white
+
+#about_map
+  height: 100vh
+.leaflet-container .leaflet-marker-pane .wwb-marker img
+  max-width: 100% !important
+  mix-blend-mode: multiply
+#about_map .leaflet-div-icon
+  background: yellow
+  border: 4px solid yellow
+#about_map
+  .leaflet-bar, .leaflet-control-scale-line
+    display: none

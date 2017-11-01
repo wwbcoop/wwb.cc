@@ -144,8 +144,8 @@ USE_TZ = True
 
 # LEAFLET
 LEAFLET_CONFIG = {
-    'DEFAULT_CENTER': (40.4115, -3.7076),
-    'DEFAULT_ZOOM'  : 5,
+    'DEFAULT_CENTER': (37.3988365,-5.9958967),
+    'DEFAULT_ZOOM'  : 12,
     'MIN_ZOOM'      : 3,
     'MAX_ZOOM'      : 18,
     'TILES'         : [('toner', 'https://api.mapbox.com/styles/v1/ale/cj3rpgd2n00142slekpjya98f/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYWxlIiwiYSI6ImpKQ2dnekEifQ.GjyY2X3Wa6pgoHTPOrUBdA', {
