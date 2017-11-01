@@ -29,7 +29,7 @@ LOGOUT_URL = '/logout'
 LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_OPEN = True
+REGISTRATION_OPEN = False
 REGISTRATION_AUTO_LOGIN = True
 
 # Name of site in the document title

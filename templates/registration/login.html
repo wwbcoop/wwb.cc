@@ -13,7 +13,11 @@
         </p>
     {% endif %}
     {% trans 'Login' as login_title %}
+    <div class="page-breadcrumb">
+        <a href="/">{% trans 'Inicio' %}</a> » <span class="no-link">{{ login_title }}</span>
+    </div>
     {% include 'pages/title.html' with title=login_title %}
+    
     {% trans 'Accede' as login_submit %}
     {% include 'forms/regular-form.html' with form_title="Login" form=form form_class="login" submit_text=login_submit %}
 
@@ -21,11 +25,6 @@
         <li class="loginform-links__link">
             <a href="{% url 'password_reset' %}">
                 {% trans '¿Has olvidado tu nombre de usuari@ o contraseña?' %}
-            </a>
-        </li>
-        <li class="loginform-links__link">
-            <a href="{% url 'registration_register' %}">
-                {% trans 'Regístrate en la plataforma' %}
             </a>
         </li>
     </ul>
