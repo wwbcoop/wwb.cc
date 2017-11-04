@@ -67,6 +67,7 @@ class ProjectAdmin(admin.ModelAdmin):
         ImageInline,
     ]
     list_display = ('name', 'category', 'end_date', 'published', 'featured', 'ver')
+    list_filter  = ('published', 'featured', 'category')
     actions = [publish, unpublish, unfeature, feature]
 
     def ver(self, obj):
