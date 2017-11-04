@@ -39,7 +39,7 @@
           <a href="{% url 'project' project.slug %}">
               <div class="projects__item-header">
                   <figure class="projects__item-image">
-                      {% thumbnail '500x' project.images.first.image_file %}
+                      {% generateimage 'models:medium' source=project.images.first.image_file %}
                   </figure>
                   {% if project.end_date %}
                   <p class="projects__item-year">

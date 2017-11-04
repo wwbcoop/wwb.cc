@@ -11,8 +11,6 @@ from django.utils.timezone import now
 
 # contrib
 from ckeditor_uploader.fields import RichTextUploadingField
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill, ResizeToFit
 
 # project
 from .validators import ImageTypeValidator, ImageSizeValidator
