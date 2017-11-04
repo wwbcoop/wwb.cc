@@ -39,14 +39,11 @@ DEFAULT_HTML_DESCRIPTION = _('Cooperativa andaluza de servicios tecnológicos ba
 # Sites ID
 SITE_ID = 1
 
-GRAPPELLI_ADMIN_TITLE = 'WWB S. Coop. And.'
-
 #
 # Application definition
 #
 
 CONTRIB_APPS = [
-    'grappelli',
     'django.contrib.admin',
     'django.contrib.sites',
     'registration',

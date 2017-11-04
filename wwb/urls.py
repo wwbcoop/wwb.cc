@@ -14,7 +14,6 @@ from apps.views import views
 
 
 urlpatterns = [
-    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/',  include('django.conf.urls.i18n')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
