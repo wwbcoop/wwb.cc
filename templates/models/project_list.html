@@ -1,4 +1,4 @@
-{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n %}
+{# Site front page #} {% extends 'layouts/single-fluid-column.html' %} {% load static utils i18n imagekit %}
 
 {% block body_classes %}projects{% endblock %}
 {% block html_title %}{% trans 'Proyectos' as page_title %} {{ page_title }} | {% endblock %}
@@ -39,7 +39,7 @@
           <a href="{% url 'project' project.slug %}">
               <div class="projects__item-header">
                   <figure class="projects__item-image">
-                      <img src="{% get_media_prefix %}{{ project.images.first.medium_size }}" />
+                      {% thumbnail '500x' project.images.first.image_file %}
                   </figure>
                   {% if project.end_date %}
                   <p class="projects__item-year">

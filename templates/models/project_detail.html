@@ -37,7 +37,7 @@
         {% for related_project in object.related.all %}
             <li>
                 <a href="{% url 'project' related_project.slug %}">
-                    <img src="{% get_media_prefix %}{{ related_project.images.first.thumbnail }}" />
+                    {% thumbnail '100x100' related_project.images.first.image_file %}
                     <h5>{{ related_project.name }}</h5>
                 </a>
             </li>
@@ -96,7 +96,7 @@
 <div class="project-right">
     {% for image in project.images.all %}
         <figure class="project__image">
-            <img src="{% get_media_prefix %}{{ image.big_size }}" />
+            {% thumbnail '1000x' image.image_file %}
             <figcaption class="project__image-caption">
                 ^ {{ image.alt_text }} {% if image.credits %}· {% trans 'Fuente:' %} {{ image.credits }}{% endif %}
             </figcaption>

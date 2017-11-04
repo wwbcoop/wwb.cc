@@ -80,9 +80,6 @@ class Image(models.Model):
                                        help_text=_("Sube una imagen representativa haciendo click en la imagen inferior."
                                                    "La imagen ha de tener ancho mínimo de 300 píxeles y máximo de 1920, y altura mínima "
                                                    "de 300 píxeles y máxima de 1280. Formatos permitidos: PNG, JPG, JPEG."))
-    thumbnail      = ImageSpecField(source="image_file", processors=[ResizeToFill(100, 100)], format='JPEG', options={'quality': 85})
-    medium_size    = ImageSpecField(source="image_file", processors=[ResizeToFit(500)], format='JPEG', options={'quality': 85})
-    big_size       = ImageSpecField(source="image_file", processors=[ResizeToFit(1000)], format='JPEG', options={'quality': 85})
     alt_text       = models.CharField(_("Texto alternativo"), max_length=128, blank=False,
                      help_text=_("Texto que describe la imagen para screen readers "))
     credits        = models.CharField(_("Créditos"), max_length=128, blank=True,
