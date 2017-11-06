@@ -106,14 +106,17 @@ class Project(models.Model):
                      help_text=_("Categoría del proyecto"))
     summary        = models.TextField(_("Resumen"), blank=True,
                      help_text=_("Una resumen corto del proyecto para cabeceras y vistas."))
-    body           = RichTextUploadingField(_("Descripción del proyecto"), blank=True)
+    body           = RichTextUploadingField(_("Descripción del proyecto"), blank=True,
+                     help_text=_("Descripción del proyecto."))
     images         = GenericRelation(Image, related_query_name='projects')
     start_date     = models.DateField(_("Fecha de comienzo"), blank=True, null=True,
-                     help_text=_("Fecha aproximada de comienzo del proyecto."))
+                     help_text=_("Fecha aproximada de comienzo del proyecto. Usa el datepicker o el formato dd/mm/yyyy."))
     end_date       = models.DateField(_("Fecha de finalización"), blank=True, null=True,
-                     help_text=_("Fecha aproximada de finalización del proyecto."))
-    clients        = models.ManyToManyField(RelatedEntity, related_name='clients', verbose_name=_("Clientes"), blank=True)
-    collaborators  = models.ManyToManyField(RelatedEntity, related_name='collaborators', verbose_name=_("Colaborador@s"), blank=True)
+                     help_text=_("Fecha aproximada de finalización del proyecto. Usa el datepicker o el formato dd/mm/yyyy."))
+    clients        = models.ManyToManyField(RelatedEntity, related_name='clients', verbose_name=_("Clientes"), blank=True,
+                     help_text=_("Indica clientes del proyecto. Puedes añadir nuevos clicando en el +"))
+    collaborators  = models.ManyToManyField(RelatedEntity, related_name='collaborators', verbose_name=_("Colaborador@s"), blank=True,
+                     help_text=_("Indica colaboradores del proyecto. Puedes añadir nuevos clicando en el +"))
     technology     = models.ManyToManyField(TechTaxonomy, verbose_name=_("Tecnologías empleadas"), blank=True,
                      help_text=_("Especifica aquí tecnologías empleadas en el Proyecto."))
     links          = models.ManyToManyField(Link, verbose_name=_("Enlaces"), blank=True,

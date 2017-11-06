@@ -1,0 +1,19 @@
+{% extends 'admin/base.html' %} {% load static utils %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'wwb/css/admin.css' %}" ></link>
+{% endblock %}
+
+{% block favicon %}
+  <link href="{% img 'favicon.ico' %}" rel="shortcut icon">
+{% endblock %}
+
+{% block sidenav_header %}
+<li>
+    <div class="userView">
+        <a href="/"><img src="{% img 'logo-wwb.png' %}"></a>
+        <span class="white-text name">{{ request.user.get_username|title }}</span>
+        <span class="white-text email">{{ request.user.email }}</span>
+    </div>
+</li>
+{% endblock %}

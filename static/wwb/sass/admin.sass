@@ -1,0 +1,36 @@
+// Admin overrides
+
+@import compass/css3/border-radius
+@import compass/css3/box-shadow
+
+.field-thumb img
+  +border-radius(50%)
+.userView
+  background-color: #333
+  text-align: center
+  img
+    max-width: 72px
+  .name
+    margin-top: 0 !important
+.django-ckeditor-widget
+  width: 100%
+  margin-bottom: 24px
+table .field-position
+  display: none
+table.ui-sortable tr
+  display: block
+  position: relative
+  padding-left: 24px
+  &:before
+    content: "⤮"
+    position: absolute
+    left: -6px
+    top: 24px
+    font-size: 2em
+    cursor: move
+    color: #aaa
+.userView
+  border-left: 8px solid #222
+.topbar,
+.breadcrumbs
+  border-left: 8px solid #333

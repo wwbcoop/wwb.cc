@@ -44,6 +44,8 @@ SITE_ID = 1
 #
 
 CONTRIB_APPS = [
+    'material',
+    'material.admin',
     'django.contrib.admin',
     'django.contrib.sites',
     'registration',
